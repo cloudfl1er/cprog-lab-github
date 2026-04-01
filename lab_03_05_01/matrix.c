@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols)
+int read_matrix(Matrix mat, int *rows, int *cols)
 {
     if (scanf("%d %d", rows, cols) != 2)
         return -1;
@@ -29,7 +29,7 @@ int digit_sum(int n)
     return s;
 }
 
-int shift_elements(int mat[][MAX_SIZE], int rows, int cols)
+int shift_elements(Matrix mat, int rows, int cols)
 {
     int arr[MAX_SIZE * MAX_SIZE];
     int pi[MAX_SIZE * MAX_SIZE];
@@ -55,7 +55,7 @@ int shift_elements(int mat[][MAX_SIZE], int rows, int cols)
     return 0;
 }
 
-void print_matrix(int mat[][MAX_SIZE], int rows, int cols)
+void print_matrix(Matrix mat, int rows, int cols)
 {
     for (int i = 0; i < rows; i++)
     {

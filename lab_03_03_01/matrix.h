@@ -3,8 +3,10 @@
 
 #define MAX_SIZE 10
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols);
-void sort_rows_by_max(int mat[][MAX_SIZE], int rows, int cols);
-void print_matrix(int mat[][MAX_SIZE], int rows, int cols);
+typedef int Matrix[MAX_SIZE][MAX_SIZE];
+
+int read_matrix(Matrix mat, int *rows, int *cols);
+void sort_rows_by_max(Matrix mat, int rows, int cols);
+void print_matrix(Matrix mat, int rows, int cols);
 
 #endif

@@ -3,8 +3,10 @@
 
 #define MAX_SIZE 10
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols);
-void check_sym_rows(int mat[][MAX_SIZE], int rows, int cols, int res[]);
+typedef int Matrix[MAX_SIZE][MAX_SIZE];
+
+int read_matrix(Matrix mat, int *rows, int *cols);
+void check_sym_rows(Matrix mat, int rows, int cols, int res[]);
 void print_arr(int arr[], int len);
 
 #endif

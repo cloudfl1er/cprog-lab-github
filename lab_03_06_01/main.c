@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    int mat[MAX_SIZE][MAX_SIZE];
+    Matrix mat;
     int n;
     if (read_size(&n) != 0)
     {

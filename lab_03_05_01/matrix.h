@@ -3,9 +3,11 @@
 
 #define MAX_SIZE 10
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols);
+typedef int Matrix[MAX_SIZE][MAX_SIZE];
+
+int read_matrix(Matrix mat, int *rows, int *cols);
 int digit_sum(int n);
-int shift_elements(int mat[][MAX_SIZE], int rows, int cols);
-void print_matrix(int mat[][MAX_SIZE], int rows, int cols);
+int shift_elements(Matrix mat, int rows, int cols);
+void print_matrix(Matrix mat, int rows, int cols);
 
 #endif
