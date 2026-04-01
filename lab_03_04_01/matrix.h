@@ -3,8 +3,10 @@
 
 #define MAX_SIZE 10
 
-int read_square(int mat[][MAX_SIZE], int *n);
-void flip_rows(int mat[][MAX_SIZE], int n);
-void print_matrix(int mat[][MAX_SIZE], int n);
+typedef int Matrix[MAX_SIZE][MAX_SIZE];
+
+int read_square(Matrix mat, int *n);
+void flip_rows(Matrix mat, int n);
+void print_matrix(Matrix mat, int n);
 
 #endif

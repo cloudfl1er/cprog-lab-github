@@ -3,10 +3,12 @@
 
 #define MAX_SIZE 10
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols);
+typedef int Matrix[MAX_SIZE][MAX_SIZE];
+
+int read_matrix(Matrix mat, int *rows, int *cols);
 int digit_sum(int n);
-void find_min_digit_sum(int mat[][MAX_SIZE], int rows, int cols, int *row, int *col);
-void delete_row_col(int mat[][MAX_SIZE], int *rows, int *cols, int r, int c);
-void print_matrix(int mat[][MAX_SIZE], int rows, int cols);
+void find_min_digit_sum(Matrix mat, int rows, int cols, int *row, int *col);
+void delete_row_col(Matrix mat, int *rows, int *cols, int r, int c);
+void print_matrix(Matrix mat, int rows, int cols);
 
 #endif

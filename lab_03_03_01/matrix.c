@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols)
+int read_matrix(Matrix mat, int *rows, int *cols)
 {
     if (scanf("%d %d", rows, cols) != 2)
         return -1;
@@ -14,7 +14,7 @@ int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols)
     return 0;
 }
 
-static int row_max(int mat[][MAX_SIZE], int row, int cols)
+static int row_max(Matrix mat, int row, int cols)
 {
     int m = mat[row][0];
     for (int j = 1; j < cols; j++)
@@ -23,7 +23,7 @@ static int row_max(int mat[][MAX_SIZE], int row, int cols)
     return m;
 }
 
-void sort_rows_by_max(int mat[][MAX_SIZE], int rows, int cols)
+void sort_rows_by_max(Matrix mat, int rows, int cols)
 {
     int maxes[MAX_SIZE];
     for (int i = 0; i < rows; i++)
@@ -48,7 +48,7 @@ void sort_rows_by_max(int mat[][MAX_SIZE], int rows, int cols)
     }
 }
 
-void print_matrix(int mat[][MAX_SIZE], int rows, int cols)
+void print_matrix(Matrix mat, int rows, int cols)
 {
     for (int i = 0; i < rows; i++)
     {

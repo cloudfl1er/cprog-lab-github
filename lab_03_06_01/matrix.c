@@ -10,7 +10,7 @@ int read_size(int *n)
     return 0;
 }
 
-void fill_spiral(int mat[][MAX_SIZE], int n)
+void fill_spiral(Matrix mat, int n)
 {
     int top = 0, bot = n - 1, left = 0, right = n - 1;
     int num = 1;
@@ -37,7 +37,7 @@ void fill_spiral(int mat[][MAX_SIZE], int n)
     }
 }
 
-void print_matrix(int mat[][MAX_SIZE], int n)
+void print_matrix(Matrix mat, int n)
 {
     for (int i = 0; i < n; i++)
     {

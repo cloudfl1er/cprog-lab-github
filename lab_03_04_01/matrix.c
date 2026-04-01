@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int read_square(int mat[][MAX_SIZE], int *n)
+int read_square(Matrix mat, int *n)
 {
     if (scanf("%d", n) != 1)
         return -1;
@@ -14,7 +14,7 @@ int read_square(int mat[][MAX_SIZE], int *n)
     return 0;
 }
 
-void flip_rows(int mat[][MAX_SIZE], int n)
+void flip_rows(Matrix mat, int n)
 {
     for (int i = 0; i < n / 2; i++)
     {
@@ -27,7 +27,7 @@ void flip_rows(int mat[][MAX_SIZE], int n)
     }
 }
 
-void print_matrix(int mat[][MAX_SIZE], int n)
+void print_matrix(Matrix mat, int n)
 {
     for (int i = 0; i < n; i++)
     {

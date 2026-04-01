@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols)
+int read_matrix(Matrix mat, int *rows, int *cols)
 {
     if (scanf("%d %d", rows, cols) != 2)
         return -1;
@@ -14,7 +14,7 @@ int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols)
     return 0;
 }
 
-void check_sym_rows(int mat[][MAX_SIZE], int rows, int cols, int res[])
+void check_sym_rows(Matrix mat, int rows, int cols, int res[])
 {
     for (int i = 0; i < rows; i++)
     {

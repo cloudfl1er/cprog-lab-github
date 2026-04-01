@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int read_matrix(int mat[][MAX_SIZE], int *rows, int *cols)
+int read_matrix(Matrix mat, int *rows, int *cols)
 {
     if (scanf("%d %d", rows, cols) != 2)
         return -1;
@@ -29,7 +29,7 @@ int digit_sum(int n)
     return s;
 }
 
-void find_min_digit_sum(int mat[][MAX_SIZE], int rows, int cols, int *row, int *col)
+void find_min_digit_sum(Matrix mat, int rows, int cols, int *row, int *col)
 {
     int mn = digit_sum(mat[0][0]);
     *row = 0;
@@ -49,7 +49,7 @@ void find_min_digit_sum(int mat[][MAX_SIZE], int rows, int cols, int *row, int *
     }
 }
 
-void delete_row_col(int mat[][MAX_SIZE], int *rows, int *cols, int r, int c)
+void delete_row_col(Matrix mat, int *rows, int *cols, int r, int c)
 {
     for (int i = r; i < *rows - 1; i++)
         for (int j = 0; j < *cols; j++)
@@ -61,7 +61,7 @@ void delete_row_col(int mat[][MAX_SIZE], int *rows, int *cols, int r, int c)
     (*cols)--;
 }
 
-void print_matrix(int mat[][MAX_SIZE], int rows, int cols)
+void print_matrix(Matrix mat, int rows, int cols)
 {
     for (int i = 0; i < rows; i++)
     {
