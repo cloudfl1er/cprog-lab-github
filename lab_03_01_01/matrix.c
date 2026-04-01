@@ -41,15 +41,15 @@ int input_matrix(Matrix mat, int *colsn, int *rowsn)
     return 0;
 }
 
-void find_rows(mat, int colsn, int rowsn, int *arr)
+void find_rows(Matrix mat, int colsn, int rowsn, int *arr)
 {
     for (int i = 0; i < rowsn; i++)
     {
         arr[i] = 1;
 
-        for (int j = 0; j < colsn / 2; i++)
+        for (int j = 0; j < colsn / 2; j++)
         {
-            if (mat[i][j] == mat[i][colsn - 1 - j])
+            if (mat[i][j] != mat[i][colsn - 1 - j])
             {
                 arr[i] = 0;
                 break;
