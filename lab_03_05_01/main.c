@@ -1,21 +1,24 @@
 #include "matrix.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
     Matrix mat;
-    int rows, cols;
-    if (read_matrix(mat, &rows, &cols) != 0)
+    int rowsn, colsn;
+    int arr[MAX_SIZE * MAX_SIZE];
+    int cnt;
+
+    if (input_matrix(mat, &colsn, &rowsn) != 0)
     {
-        fprintf(stderr, "Input error\n");
-        return EXIT_FAILURE;
+        return INPUT_ERROR;
     }
-    if (shift_elements(mat, rows, cols) != 0)
+
+    if (collect_elements(mat, rowsn, colsn, arr, &cnt) != 0)
     {
-        fprintf(stderr, "No elements with digit sum greater than ten\n");
-        return EXIT_FAILURE;
+        return INPUT_ERROR;
     }
-    print_matrix(mat, rows, cols);
-    return EXIT_SUCCESS;
+
+    shift_left(arr, cnt);
+    put_elements_back(mat, rowsn, colsn, arr);
+    print_matrix(mat, rowsn, colsn);
 }
