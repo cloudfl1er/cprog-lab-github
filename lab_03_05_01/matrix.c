@@ -1,69 +1,120 @@
 #include "matrix.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int read_matrix(Matrix mat, int *rows, int *cols)
+int input_rows_cols(int *colsn, int *rowsn)
 {
-    if (scanf("%d %d", rows, cols) != 2)
+    printf("Введи кол-во строк:\n");
+    if (scanf("%d", rowsn) != 1) {
         return -1;
-    if (*rows < 1 || *rows > MAX_SIZE || *cols < 1 || *cols > MAX_SIZE)
-        return -1;
-    for (int i = 0; i < *rows; i++)
-        for (int j = 0; j < *cols; j++)
-            if (scanf("%d", &mat[i][j]) != 1)
-                return -1;
-    return 0;
-}
-
-int digit_sum(int n)
-{
-    int s = 0;
-    if (n < 0)
-        n = -n;
-    if (n == 0)
-        return 0;
-    while (n > 0)
-    {
-        s += n % 10;
-        n /= 10;
     }
-    return s;
-}
 
-int shift_elements(Matrix mat, int rows, int cols)
-{
-    int arr[MAX_SIZE * MAX_SIZE];
-    int pi[MAX_SIZE * MAX_SIZE];
-    int pj[MAX_SIZE * MAX_SIZE];
-    int cnt = 0;
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < cols; j++)
-            if (digit_sum(mat[i][j]) > 10)
-            {
-                arr[cnt] = mat[i][j];
-                pi[cnt] = i;
-                pj[cnt] = j;
-                cnt++;
-            }
-    if (cnt == 0)
+    printf("Введи кол-во столбцов:\n");
+    if (scanf("%d", colsn) != 1) {
         return -1;
-    int shifted[MAX_SIZE * MAX_SIZE];
-    int sh = 3 % cnt;
-    for (int i = 0; i < cnt; i++)
-        shifted[i] = arr[(i + sh) % cnt];
-    for (int i = 0; i < cnt; i++)
-        mat[pi[i]][pj[i]] = shifted[i];
+    }
+
+    if (*rowsn < 1 || *rowsn > MAX_SIZE || *colsn < 1 || *colsn > MAX_SIZE)
+    {
+        return -1;
+    }
+
     return 0;
 }
 
-void print_matrix(Matrix mat, int rows, int cols)
+int input_matrix(Matrix mat, int *colsn, int *rowsn)
 {
-    for (int i = 0; i < rows; i++)
+    if (input_rows_cols(colsn, rowsn) != 0)
     {
-        for (int j = 0; j < cols; j++)
+        return -1;
+    }
+
+    for (int i = 0; i < *rowsn; i++)
+    {
+        for (int j = 0; j < *colsn; j++)
         {
-            if (j > 0)
-                printf(" ");
-            printf("%d", mat[i][j]);
+            printf("Введи элемент [%d][%d]: ", i, j);
+            if (scanf("%d", &mat[i][j]) != 1)
+            {
+                return -1;
+            }
+        }
+    }
+
+    return 0;
+}
+
+int find_digit_sum(int num)
+{
+    if (num < 0)
+        num = -num;
+    int summ = 0;
+    if (num == 0)
+        return 0;
+    while (num != 0)
+    {
+        summ += num % 10;
+        num /= 10;
+    }
+    return summ;
+}
+
+int collect_elements(Matrix mat, int rowsn, int colsn, int *arr, int *cnt)
+{
+    *cnt = 0;
+    for (int i = 0; i < rowsn; i++)
+    {
+        for (int j = 0; j < colsn; j++)
+        {
+            if (find_digit_sum(mat[i][j]) > 10)
+            {
+                arr[*cnt] = mat[i][j];
+                (*cnt)++;
+            }
+        }
+    }
+
+    if (*cnt == 0)
+    {
+        return -1;
+    }
+
+    return 0;
+}
+
+void shift_left(int *arr, int cnt)
+{
+    int shift = 3 % cnt;
+    int tmp[MAX_SIZE * MAX_SIZE];
+    for (int i = 0; i < cnt; i++)
+        tmp[i] = arr[(i + shift) % cnt];
+    for (int i = 0; i < cnt; i++)
+        arr[i] = tmp[i];
+}
+
+void put_elements_back(Matrix mat, int rowsn, int colsn, int *arr)
+{
+    int k = 0;
+    for (int i = 0; i < rowsn; i++)
+    {
+        for (int j = 0; j < colsn; j++)
+        {
+            if (find_digit_sum(mat[i][j]) > 10)
+            {
+                mat[i][j] = arr[k];
+                k++;
+            }
+        }
+    }
+}
+
+void print_matrix(Matrix mat, int rowsn, int colsn)
+{
+    for (int i = 0; i < rowsn; i++)
+    {
+        for (int j = 0; j < colsn; j++)
+        {
+            printf("%d ", mat[i][j]);
         }
         printf("\n");
     }

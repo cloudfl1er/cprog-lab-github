@@ -1,17 +1,16 @@
 #include "matrix.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
     Matrix mat;
     int n;
-    if (read_size(&n) != 0)
+
+    if (input_size(&n) != 0)
     {
-        fprintf(stderr, "Input error\n");
-        return EXIT_FAILURE;
+        return INPUT_ERROR;
     }
+
     fill_spiral(mat, n);
-    print_matrix(mat, n);
-    return EXIT_SUCCESS;
+    print_matrix(mat, n, n);
 }
