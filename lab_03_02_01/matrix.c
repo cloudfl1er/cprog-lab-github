@@ -1,75 +1,129 @@
 #include "matrix.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int read_matrix(Matrix mat, int *rows, int *cols)
+int input_rows_cols(int *colsn, int *rowsn)
 {
-    if (scanf("%d %d", rows, cols) != 2)
+    printf("Введи кол-во строк:\n");
+    if (scanf("%d", rowsn) != 1) {
         return -1;
-    if (*rows < 1 || *rows > MAX_SIZE || *cols < 1 || *cols > MAX_SIZE)
+    }
+
+    printf("Введи кол-во столбцов:\n");
+    if (scanf("%d", colsn) != 1) {
         return -1;
-    for (int i = 0; i < *rows; i++)
-        for (int j = 0; j < *cols; j++)
-            if (scanf("%d", &mat[i][j]) != 1)
-                return -1;
+    }
+
+    if (*rowsn < 1 || *rowsn > MAX_SIZE || *colsn < 1 || *colsn > MAX_SIZE)
+    {
+        return -1;
+    }
+
     return 0;
 }
 
-int digit_sum(int n)
+int input_matrix(Matrix mat, int *colsn, int *rowsn)
 {
-    int s = 0;
-    if (n < 0)
-        n = -n;
-    if (n == 0)
-        return 0;
-    while (n > 0)
+    if (input_rows_cols(colsn, rowsn) != 0)
     {
-        s += n % 10;
-        n /= 10;
+        return -1;
     }
-    return s;
+
+    for (int i = 0; i < *rowsn; i++)
+    {
+        for (int j = 0; j < *colsn; j++)
+        {
+            printf("Введи элемент [%d][%d]: ", i, j);
+            if (scanf("%d", &mat[i][j]) != 1)
+            {
+                return -1;
+            }
+        }
+    }
+
+    return 0;
 }
 
-void find_min_digit_sum(Matrix mat, int rows, int cols, int *row, int *col)
+int find_digit_sum(int num)
 {
-    int mn = digit_sum(mat[0][0]);
-    *row = 0;
-    *col = 0;
-    for (int i = 0; i < rows; i++)
+    int c = 1;
+    int summ = num % 10;
+    
+    while (num / 10 != 0)
     {
-        for (int j = 0; j < cols; j++)
+        c++;
+        num /= 10;
+        summ += num % 10;
+    }
+
+    return summ;
+}
+
+void find_number_with_max_digit_sum(Matrix mat, int *colsn, int *rowsn, int *coord_x, int *coord_y)
+{
+    int curnum, curnumsum;
+    int maxnumsum = find_digit_sum(mat[0][0]);
+    *coord_x = 0;
+    *coord_y = 0;
+
+    for (int i = 0; i < *rowsn; i++)
+    {
+        for (int j = 0; j < *colsn; j++)
         {
-            int s = digit_sum(mat[i][j]);
-            if (s < mn)
+            curnum = mat[i][j];
+            curnumsum = find_digit_sum(abs(curnum));
+
+            if (curnumsum > maxnumsum)
             {
-                mn = s;
-                *row = i;
-                *col = j;
+                maxnumsum = curnumsum;
+                *coord_x = i;
+                *coord_y = j;
             }
         }
     }
 }
 
-void delete_row_col(Matrix mat, int *rows, int *cols, int r, int c)
+void delete_columns(Matrix mat, int *colsn, int *rowsn, int *coord_y)
 {
-    for (int i = r; i < *rows - 1; i++)
-        for (int j = 0; j < *cols; j++)
-            mat[i][j] = mat[i + 1][j];
-    (*rows)--;
-    for (int j = c; j < *cols - 1; j++)
-        for (int i = 0; i < *rows; i++)
-            mat[i][j] = mat[i][j + 1];
-    (*cols)--;
+    for (int i = 0; i < *rowsn; i++)
+    {
+        for (int j = *coord_y; j < *colsn; j++)
+        {
+           if (j != *colsn - 1)
+            {
+                mat[i][j] = mat[i][j + 1];
+            } else
+            {
+                mat[i][j] = 0;
+            }
+        }
+    }
 }
 
-void print_matrix(Matrix mat, int rows, int cols)
+void delete_rows(Matrix mat, int *colsn, int *rowsn, int *coord_x)
 {
-    for (int i = 0; i < rows; i++)
+    for (int i = *coord_x; i < *rowsn; i++)
     {
-        for (int j = 0; j < cols; j++)
+        for (int j = 0; j < *colsn; j++)
         {
-            if (j > 0)
-                printf(" ");
-            printf("%d", mat[i][j]);
+            if (i != *rowsn - 1)
+            {
+                mat[i][j] = mat[i + 1][j];
+            } else
+            {
+                mat[i][j] = 0;
+            }
+        }
+    }
+}
+
+void print_new_matrix(Matrix mat, int *colsn, int *rowsn)
+{
+    for (int i = 0; i < (*rowsn) - 1; i++)
+    {
+        for (int j = 0; j < (*colsn) - 1; j++)
+        {
+            printf("%d ", mat[i][j]);
         }
         printf("\n");
     }

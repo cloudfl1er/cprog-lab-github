@@ -1,17 +1,17 @@
 #include "matrix.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
     Matrix mat;
-    int n;
-    if (read_square(mat, &n) != 0)
+    int rowsn, colsn;
+
+    if (input_matrix(mat, &rowsn, &colsn) != 0)
     {
-        fprintf(stderr, "Input error\n");
-        return EXIT_FAILURE;
+        return INPUT_ERROR;
     }
-    flip_rows(mat, n);
-    print_matrix(mat, n);
-    return EXIT_SUCCESS;
+
+    switch_matrix_rows(mat, rowsn, colsn);
+
+    print_matrix(mat, rowsn, colsn);
 }

@@ -5,13 +5,13 @@
 int main(void)
 {
     Matrix mat;
-    int rows, cols;
-    if (read_matrix(mat, &rows, &cols) != 0)
+    int rowsn, colsn;
+
+    if (input_matrix(mat, &rowsn, &colsn) != 0)
     {
-        fprintf(stderr, "Input error\n");
-        return EXIT_FAILURE;
+        return INPUT_ERROR;
     }
-    sort_rows_by_max(mat, rows, cols);
-    print_matrix(mat, rows, cols);
-    return EXIT_SUCCESS;
+
+    gtl_sort_rows_by_max(mat, rowsn, colsn);
+    print_matrix(mat, rowsn, colsn);
 }

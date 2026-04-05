@@ -1,24 +1,21 @@
 #include "matrix.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void)
 {
     Matrix mat;
-    int rows, cols;
-    int r, c;
-    if (read_matrix(mat, &rows, &cols) != 0)
+    int colsn, rowsn;
+    int coord_x, coord_y;
+
+    if (input_matrix(mat, &colsn, &rowsn) != 0)
     {
-        fprintf(stderr, "Input error\n");
-        return EXIT_FAILURE;
+        return INPUT_ERROR;
     }
-    if (rows < 2 || cols < 2)
-    {
-        fprintf(stderr, "Matrix is too small to delete row and column\n");
-        return EXIT_FAILURE;
-    }
-    find_min_digit_sum(mat, rows, cols, &r, &c);
-    delete_row_col(mat, &rows, &cols, r, c);
-    print_matrix(mat, rows, cols);
-    return EXIT_SUCCESS;
+
+    find_number_with_max_digit_sum(mat, &colsn, &rowsn, &coord_x, &coord_y);
+
+    delete_columns(mat, &colsn, &rowsn, &coord_y);
+    delete_rows(mat, &colsn, &rowsn, &coord_x);
+
+    print_new_matrix(mat, &colsn, &rowsn);
 }
