@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include "matrix.h"
 
-int input_rows_cols(int *colsn, int *rowsn) {
-    if (scanf("%d", rowsn) != 1) {
+int input_rows_cols(int *colsn, int *rowsn)
+{
+    if (scanf("%d", rowsn) != 1)
+    {
         return -1;
     }
 
-    if (scanf("%d", colsn) != 1) {
+    if (scanf("%d", colsn) != 1)
+    {
         return -1;
     }
 
@@ -18,7 +21,7 @@ int input_rows_cols(int *colsn, int *rowsn) {
     return 0;
 }
 
-int input_matrix(Matrix mat, int *colsn, int *rowsn)
+int input_matrix(matrixx mat, int *colsn, int *rowsn)
 {
     if (input_rows_cols(colsn, rowsn) != 0)
     {
@@ -39,7 +42,7 @@ int input_matrix(Matrix mat, int *colsn, int *rowsn)
     return 0;
 }
 
-void find_symetric_rows(Matrix mat, int colsn, int rowsn, int *arr)
+void find_symetric_rows(matrixx mat, int colsn, int rowsn, int *arr)
 {
     for (int i = 0; i < rowsn; i++)
     {
@@ -56,7 +59,8 @@ void find_symetric_rows(Matrix mat, int colsn, int rowsn, int *arr)
     }
 }
 
-void print_row(int *arr, int len) {
+void print_row(int *arr, int len)
+{
     for (int i = 0; i < len; i++)
     {
         printf("%d ", arr[i]);

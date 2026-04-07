@@ -2,8 +2,9 @@
 #include "matrix.h"
 
 
-int main(void) {
-    Matrix mat;
+int main(void)
+{
+    matrixx mat;
     int colsn, rowsn;
     int res[MAX_SIZE];
 
