@@ -3,7 +3,6 @@
 
 int input_size(int *n)
 {
-    printf("Введи размер матрицы:\n");
     if (scanf("%d", n) != 1)
     {
         return -1;

@@ -4,13 +4,13 @@
 
 int input_rows_cols(int *colsn, int *rowsn)
 {
-    printf("Введи кол-во строк:\n");
-    if (scanf("%d", rowsn) != 1) {
+    if (scanf("%d", rowsn) != 1) 
+    {
         return -1;
-    }
+    }      
 
-    printf("Введи кол-во столбцов:\n");
-    if (scanf("%d", colsn) != 1) {
+    if (scanf("%d", colsn) != 1) 
+    {
         return -1;
     }
 
@@ -33,7 +33,6 @@ int input_matrix(Matrix mat, int *colsn, int *rowsn)
     {
         for (int j = 0; j < *colsn; j++)
         {
-            printf("Введи элемент [%d][%d]: ", i, j);
             if (scanf("%d", &mat[i][j]) != 1)
             {
                 return -1;

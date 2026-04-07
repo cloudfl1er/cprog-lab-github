@@ -4,14 +4,16 @@
 int main(void)
 {
     Matrix mat;
-    int rowsn, colsn;
+    int n;
 
-    if (input_matrix(mat, &rowsn, &colsn) != 0)
+    printf("Введи размерность матрицы (n) и её элементы по порядку:\n");
+
+    if (input_matrix(mat, &n) != 0)
     {
         return INPUT_ERROR;
     }
 
-    switch_matrix_rows(mat, rowsn, colsn);
+    switch_matrix_rows(mat, n);
 
-    print_matrix(mat, rowsn, colsn);
+    print_matrix(mat, n);
 }

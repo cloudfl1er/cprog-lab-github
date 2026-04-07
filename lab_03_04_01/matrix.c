@@ -1,19 +1,13 @@
 #include "matrix.h"
 #include <stdio.h>
 
-int input_rows_cols(int *colsn, int *rowsn)
+int input_rows_cols(int *n)
 {
-    printf("Введи кол-во строк:\n");
-    if (scanf("%d", rowsn) != 1) {
+    if (scanf("%d", n) != 1) {
         return -1;
     }
 
-    printf("Введи кол-во столбцов:\n");
-    if (scanf("%d", colsn) != 1) {
-        return -1;
-    }
-
-    if (*rowsn < 1 || *rowsn > MAX_SIZE || *colsn < 1 || *colsn > MAX_SIZE || *colsn != *rowsn)
+    if (*n < 1 || *n > MAX_SIZE)
     {
         return -1;
     }
@@ -23,18 +17,17 @@ int input_rows_cols(int *colsn, int *rowsn)
 
 
 
-int input_matrix(Matrix mat, int *colsn, int *rowsn)
+int input_matrix(Matrix mat, int *n)
 {
-    if (input_rows_cols(colsn, rowsn) != 0)
+    if (input_rows_cols(n) != 0)
     {
         return -1;
     }
 
-    for (int i = 0; i < *rowsn; i++)
+    for (int i = 0; i < *n; i++)
     {
-        for (int j = 0; j < *colsn; j++)
+        for (int j = 0; j < *n; j++)
         {
-            printf("Введи элемент [%d][%d]: ", i, j);
             if (scanf("%d", &mat[i][j]) != 1)
             {
                 return -1;
@@ -45,30 +38,30 @@ int input_matrix(Matrix mat, int *colsn, int *rowsn)
     return 0;
 }
 
-void switch_matrix_rows(Matrix mat, int rowsn, int colsn)
+void switch_matrix_rows(Matrix mat, int n)
 {
     int c = 0;
     int temp;
-    for (int i = 0; i < rowsn; i++)
+    for (int i = 0; i < n; i++)
     {
-        if (c != rowsn / 2)
+        if (c != n / 2)
         {
-            for (int j = 0 + c; j < colsn - c; j++)
+            for (int j = 0 + c; j < n - c; j++)
             {
                 temp = mat[i][j];
-                mat[i][j] = mat[rowsn - 1 - i][j];
-                mat[rowsn - 1 - i][j] = temp;
+                mat[i][j] = mat[n - 1 - i][j];
+                mat[n - 1 - i][j] = temp;
             }
         }
         c++;
     }
 }
 
-void print_matrix(Matrix mat, int rowsn, int colsn)
+void print_matrix(Matrix mat, int n)
 {
-    for (int i = 0; i < rowsn; i++)
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < colsn; j++)
+        for (int j = 0; j < n; j++)
         {
             printf("%d ", mat[i][j]);
         }

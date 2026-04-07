@@ -2,12 +2,10 @@
 #include "matrix.h"
 
 int input_rows_cols(int *colsn, int *rowsn) {
-    printf("Введи кол-во строк:\n");
     if (scanf("%d", rowsn) != 1) {
         return -1;
     }
 
-    printf("Введи кол-во столбцов:\n");
     if (scanf("%d", colsn) != 1) {
         return -1;
     }
@@ -41,7 +39,7 @@ int input_matrix(Matrix mat, int *colsn, int *rowsn)
     return 0;
 }
 
-void find_rows(Matrix mat, int colsn, int rowsn, int *arr)
+void find_symetric_rows(Matrix mat, int colsn, int rowsn, int *arr)
 {
     for (int i = 0; i < rowsn; i++)
     {

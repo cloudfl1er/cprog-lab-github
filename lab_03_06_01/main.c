@@ -6,6 +6,8 @@ int main(void)
     Matrix mat;
     int n;
 
+    printf("Введи размер матрицы (n) и её элементы по порядку:\n");
+    
     if (input_size(&n) != 0)
     {
         return INPUT_ERROR;

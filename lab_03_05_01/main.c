@@ -8,6 +8,8 @@ int main(void)
     int arr[MAX_SIZE * MAX_SIZE];
     int cnt;
 
+    printf("Введи кол-во строк, столбцов матрицы и её элементы по порядку:\n");
+    
     if (input_matrix(mat, &colsn, &rowsn) != 0)
     {
         return INPUT_ERROR;
@@ -18,7 +20,7 @@ int main(void)
         return INPUT_ERROR;
     }
 
-    shift_left(arr, cnt);
+    shift_array_left(arr, cnt);
     put_elements_back(mat, rowsn, colsn, arr);
     print_matrix(mat, rowsn, colsn);
 }

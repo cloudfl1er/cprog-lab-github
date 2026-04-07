@@ -7,6 +7,8 @@ int main(void)
     int colsn, rowsn;
     int coord_x, coord_y;
 
+    printf("Введи кол-во строк, столбцов матрицы и её элементы по порядку:\n");
+
     if (input_matrix(mat, &colsn, &rowsn) != 0)
     {
         return INPUT_ERROR;
